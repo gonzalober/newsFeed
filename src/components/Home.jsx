@@ -5,7 +5,6 @@ export const Home = () => {
   const [newsFeed, setNewsFeed] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
-  const [pageNumber, setPageNumber] = useState(0);
 
   const loadingFeed = (page = 1) => {
     fetch(
@@ -38,7 +37,6 @@ export const Home = () => {
   //   }
   // };
 
-  // const newsPerPage = 5;
   const displayNews = (newsFeed) => {
     console.log(newsFeed);
     return newsFeed.response.results.map((news) => {
