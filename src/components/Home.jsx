@@ -1,5 +1,28 @@
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
+function ConvertMinutes(num) {
+  let d = Math.floor(num / 1440);
+  let h = Math.floor((num - d * 1440) / 60);
+  let m = Math.round(num % 60);
+
+  if (d > 0) {
+    return d + " days, " + h + " hours, " + m + " minutes";
+  } else {
+    return h + " hours, " + m + " minutes";
+  }
+}
+const getEvenDaysDiff = (d) => {
+  let now = new Date();
+  const oneDay = 24 * 60 * 60 * 10;
+  let dateLastOff = d.slice(0, -1);
+  let [yyyy, mm, dd, hh, mi, ss] = dateLastOff.split(/[/:\-T]/);
+  let formatConcat = `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`;
+  console.log(formatConcat);
+  let then = new Date(formatConcat);
+
+  let result = ConvertMinutes(Math.round(now - then) / oneDay);
+  return result;
+};
 
 export const Home = () => {
   const [newsFeed, setNewsFeed] = useState([]);
@@ -8,7 +31,7 @@ export const Home = () => {
 
   const loadingFeed = (page = 1) => {
     fetch(
-      `https://content.guardianapis.com/search?page=${page}&api-key=9215094c-0a04-4ea0-ac62-b8b0bc96ca02`
+      `https://content.guardianapis.com/search?page=${page}&show-fields=all&api-key=9215094c-0a04-4ea0-ac62-b8b0bc96ca02`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -42,9 +65,17 @@ export const Home = () => {
     return newsFeed.response.results.map((news) => {
       return (
         <li key={news.id}>
-          <a href={news.webUrl} target="_blank" rel="noopener noreferrer">
-            {news.webTitle}
+          <a
+            className="title"
+            href={news.webUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p>{news.webTitle}</p>
+
+            <img className="images" src={news.fields.thumbnail} alt="new"></img>
           </a>
+          <p>{getEvenDaysDiff(news.webPublicationDate)} ago.</p>
         </li>
       );
     });
