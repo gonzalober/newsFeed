@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
+import { Bookmarks } from "./Bookmarks";
+import Image from "../assets/bookMark.png";
+
 function ConvertMinutes(num) {
   let d = Math.floor(num / 1440);
   let h = Math.floor((num - d * 1440) / 60);
@@ -17,7 +20,6 @@ const getEvenDaysDiff = (d) => {
   let dateLastOff = d.slice(0, -1);
   let [yyyy, mm, dd, hh, mi, ss] = dateLastOff.split(/[/:\-T]/);
   let formatConcat = `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`;
-  console.log(formatConcat);
   let then = new Date(formatConcat);
 
   let result = ConvertMinutes(Math.round(now - then) / oneDay);
@@ -28,6 +30,7 @@ export const Home = () => {
   const [newsFeed, setNewsFeed] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
+  const [newsArray, setNewsArray] = useState([]);
 
   const loadingFeed = (page = 1) => {
     fetch(
@@ -35,7 +38,6 @@ export const Home = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setNewsFeed(data);
         setLoading(false);
         setError(undefined);
@@ -61,7 +63,6 @@ export const Home = () => {
   // };
 
   const displayNews = (newsFeed) => {
-    console.log(newsFeed);
     return newsFeed.response.results.map((news) => {
       return (
         <li key={news.id}>
@@ -75,24 +76,37 @@ export const Home = () => {
 
             <img className="images" src={news.fields.thumbnail} alt="new"></img>
           </a>
+          <img
+            src={Image}
+            alt=""
+            onClick={addNews(news.webTitle)}
+            className="bookmarkImg"
+          ></img>
           <p>{getEvenDaysDiff(news.webPublicationDate)} ago.</p>
         </li>
       );
     });
+  };
+  const addNews = () => {
+    // setNewsArray([...newsArray, { key: "" }]);
   };
 
   useEffect(() => {
     loadingFeed();
   }, []);
 
-  console.log(newsFeed);
   const pageCount = (newsFeed) => {
-    console.log(newsFeed);
     return newsFeed.response.pages;
   };
 
+  const handleClick = () => {};
+
   return (
     <div className="App">
+      <button>Home</button>
+
+      <Bookmarks handleClick={handleClick} />
+
       {error && <div>{error}</div>}
       {isLoading ? (
         <div>Loading...</div>
