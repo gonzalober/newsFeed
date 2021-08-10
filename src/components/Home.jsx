@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { Bookmarks } from "./Bookmarks";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import Image from "../assets/bookMark.png";
 
 function ConvertMinutes(num) {
@@ -32,6 +32,7 @@ export const Home = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [newsArray, setNewsArray] = useState([]);
+  const history = useHistory();
 
   const loadingFeed = (page = 1) => {
     fetch(
@@ -50,18 +51,6 @@ export const Home = () => {
         setNewsFeed([]);
       });
   };
-  // const loadingFeed = async () => {
-  //   try {
-  //     let response = await fetch(
-  //       "https://content.guardianapis.com/search?api-key=9215094c-0a04-4ea0-ac62-b8b0bc96ca02"
-  //     );
-  //     const data = await response.json();
-  //     setNewsFeed(data);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
 
   const displayNews = (newsFeed) => {
     return newsFeed.response.results.map((news) => {
@@ -102,14 +91,17 @@ export const Home = () => {
     return newsFeed.response.pages;
   };
 
-  const handleClick = () => {};
+  const routeChange = (event) => {
+    event.preventDefault();
+    let path = `bookmarks`;
+    // let history = useHistory();
+    history.push(path);
+  };
 
   return (
     <div className="App">
-      <button>Home</button>
-      <Router exact path="/bookmarks">
-        <Bookmarks handleClick={handleClick} />
-      </Router>
+      <button onClick={routeChange}>Bookmarks</button>
+
       {error && <div>{error}</div>}
       {isLoading ? (
         <div>Loading...</div>
@@ -153,3 +145,16 @@ export const Home = () => {
 //     )}
 //   </div>
 // );
+
+// const loadingFeed = async () => {
+//   try {
+//     let response = await fetch(
+//       "https://content.guardianapis.com/search?api-key=9215094c-0a04-4ea0-ac62-b8b0bc96ca02"
+//     );
+//     const data = await response.json();
+//     setNewsFeed(data);
+//     setLoading(false);
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// };
