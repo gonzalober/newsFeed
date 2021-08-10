@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { Bookmarks } from "./Bookmarks";
 import Image from "../assets/bookMark.png";
+import { UserContext } from "../userContext";
 
 function ConvertMinutes(num) {
   let d = Math.floor(num / 1440);
@@ -27,7 +28,7 @@ const getEvenDaysDiff = (d) => {
   return result;
 };
 
-export const Home = () => {
+export const Home = ({ handleNews }) => {
   const [newsFeed, setNewsFeed] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -69,7 +70,7 @@ export const Home = () => {
           <img
             src={Image}
             alt=""
-            onClick={addNews(news.webTitle)}
+            onClick={() => addNews({ title: news.webTitle, link: news.webUrl })}
             className="bookmarkImg"
           ></img>
           <p className="time">
@@ -79,13 +80,16 @@ export const Home = () => {
       );
     });
   };
-  const addNews = () => {
-    // setNewsArray([...newsArray, { key: "" }]);
+  const addNews = (newsProperties) => {
+    newsArray.push(newsProperties);
   };
 
   useEffect(() => {
     loadingFeed();
-  }, []);
+    setNewsArray(newsArray);
+  }, [newsArray]);
+
+  console.log(newsArray.length);
 
   const pageCount = (newsFeed) => {
     return newsFeed.response.pages;
@@ -94,14 +98,27 @@ export const Home = () => {
   const routeChange = (event) => {
     event.preventDefault();
     let path = `bookmarks`;
-    // let history = useHistory();
-    history.push(path);
+    //handleNews(newsArray);
+    history.push({
+      pathname: path,
+      newsBookmarked: newsArray,
+    });
+    setNewsArray([
+      ...newsArray,
+      {
+        pathname: path,
+        newsBookmarked: newsArray,
+      },
+    ]);
+    console.log(newsArray);
   };
 
   return (
     <div className="App">
       <button onClick={routeChange}>Bookmarks</button>
-
+      <UserContext.Provider value={{ newsArray, setNewsArray }}>
+        {/* <Bookmarks></Bookmarks> */}
+      </UserContext.Provider>
       {error && <div>{error}</div>}
       {isLoading ? (
         <div>Loading...</div>
