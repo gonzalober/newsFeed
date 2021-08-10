@@ -7,7 +7,6 @@ export const Bookmarks = () => {
   const routeChange = (event) => {
     event.preventDefault();
     let path = `/`;
-    // let history = useHistory();
     history.push(path);
   };
 
