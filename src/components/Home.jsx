@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
-import { Bookmarks } from "./Bookmarks";
 import Image from "../assets/bookMark.png";
-import { UserContext } from "../userContext";
 
 function ConvertMinutes(num) {
   let d = Math.floor(num / 1440);
@@ -89,8 +87,6 @@ export const Home = ({ handleNews }) => {
     setNewsArray(newsArray);
   }, [newsArray]);
 
-  console.log(newsArray.length);
-
   const pageCount = (newsFeed) => {
     return newsFeed.response.pages;
   };
@@ -98,27 +94,24 @@ export const Home = ({ handleNews }) => {
   const routeChange = (event) => {
     event.preventDefault();
     let path = `bookmarks`;
-    //handleNews(newsArray);
+    // setNewsArray([
+    //   ...newsArray,
+    //   {
+    //     pathname: path,
+    //     newsBookmarked: newsArray,
+    //   },
+    // ]);
+
     history.push({
       pathname: path,
-      newsBookmarked: newsArray,
+      array: newsArray,
     });
-    setNewsArray([
-      ...newsArray,
-      {
-        pathname: path,
-        newsBookmarked: newsArray,
-      },
-    ]);
     console.log(newsArray);
   };
 
   return (
     <div className="App">
       <button onClick={routeChange}>Bookmarks</button>
-      <UserContext.Provider value={{ newsArray, setNewsArray }}>
-        {/* <Bookmarks></Bookmarks> */}
-      </UserContext.Provider>
       {error && <div>{error}</div>}
       {isLoading ? (
         <div>Loading...</div>
