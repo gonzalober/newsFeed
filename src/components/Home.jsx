@@ -26,7 +26,7 @@ const getEvenDaysDiff = (d) => {
   return result;
 };
 
-export const Home = ({ handleNews }) => {
+export const Home = () => {
   const [newsFeed, setNewsFeed] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
