@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Bookmarks } from "./Bookmarks";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Image from "../assets/bookMark.png";
 
 function ConvertMinutes(num) {
@@ -82,7 +83,9 @@ export const Home = () => {
             onClick={addNews(news.webTitle)}
             className="bookmarkImg"
           ></img>
-          <p>{getEvenDaysDiff(news.webPublicationDate)} ago.</p>
+          <p className="time">
+            {getEvenDaysDiff(news.webPublicationDate)} ago.
+          </p>
         </li>
       );
     });
@@ -104,9 +107,9 @@ export const Home = () => {
   return (
     <div className="App">
       <button>Home</button>
-
-      <Bookmarks handleClick={handleClick} />
-
+      <Router exact path="/bookmarks">
+        <Bookmarks handleClick={handleClick} />
+      </Router>
       {error && <div>{error}</div>}
       {isLoading ? (
         <div>Loading...</div>

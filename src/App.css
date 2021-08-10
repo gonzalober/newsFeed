@@ -31,9 +31,16 @@ button {
   list-style-type: none;
 }
 
+li p {
+  margin: 0;
+  padding: 0;
+}
+
 .title {
   text-decoration: none;
-  color: #596980;
+  color: #4d5b6e;
+  font-size: larger;
+  margin-bottom: 1px;
 }
 
 .paginationBttns {
@@ -68,6 +75,7 @@ button {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  margin-top: 4px;
   height: 105px;
   width: 20%;
   border-radius: 8px;
@@ -75,8 +83,16 @@ button {
 }
 
 .bookmarkImg {
+  display: flex;
   margin-top: 2px;
+  padding-bottom: 0%;
   width: 5vw;
   height: 40px;
   cursor: pointer;
+}
+
+.time {
+  display: flex;
+  padding-top: 0px;
+  margin-bottom: 30px;
 }
