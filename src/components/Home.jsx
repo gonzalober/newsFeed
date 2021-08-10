@@ -94,13 +94,6 @@ export const Home = ({ handleNews }) => {
   const routeChange = (event) => {
     event.preventDefault();
     let path = `bookmarks`;
-    // setNewsArray([
-    //   ...newsArray,
-    //   {
-    //     pathname: path,
-    //     newsBookmarked: newsArray,
-    //   },
-    // ]);
 
     history.push({
       pathname: path,
@@ -125,6 +118,8 @@ export const Home = ({ handleNews }) => {
         nextLabel={"Next"}
         pageCount={newsFeed.length !== 0 && !error ? pageCount(newsFeed) : null}
         onPageChange={(data) => loadingFeed(data.selected + 1)}
+        marginPagesDisplayed={0}
+        pageRangeDisplayed={5}
         containerClassName={"paginationBttns"}
         previousLinkClassName={"previousBttn"}
         nextLinkClassName={"nextBttn"}
