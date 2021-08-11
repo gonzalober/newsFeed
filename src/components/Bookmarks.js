@@ -16,20 +16,22 @@ export const Bookmarks = () => {
   checkArray();
 
   return (
-    <div>
-      <h1>Bookmarks</h1>
+    <div className="bookmarks">
+      <h1>My Bookmarks</h1>
       <button onClick={routeChange}>Home</button>
       {location.array.map((x) => {
         return (
           <ul key={x.id}>
-            <a
-              className="title"
-              href={x.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {x.title}{" "}
-            </a>
+            <div className="bookmarkslist">
+              <a
+                className="title"
+                href={x.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {x.title}
+              </a>
+            </div>
           </ul>
         );
       })}
