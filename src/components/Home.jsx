@@ -55,25 +55,35 @@ export const Home = () => {
     return newsFeed.response.results.map((news) => {
       return (
         <li key={news.id}>
-          <a
-            className="title"
-            href={news.webUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p>{news.webTitle}</p>
+          <div className="card">
+            <div className="cardContent">
+              <a
+                className="title"
+                href={news.webUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p>{news.webTitle}</p>
 
-            <img className="images" src={news.fields.thumbnail} alt="new"></img>
-          </a>
-          <img
-            src={Image}
-            alt=""
-            onClick={() => addNews({ title: news.webTitle, link: news.webUrl })}
-            className="bookmarkImg"
-          ></img>
-          <p className="time">
-            {getEvenDaysDiff(news.webPublicationDate)} ago.
-          </p>
+                <img
+                  className="images"
+                  src={news.fields.thumbnail}
+                  alt="new"
+                ></img>
+              </a>
+              <img
+                className="bookmarkImg"
+                src={Image}
+                alt=""
+                onClick={() =>
+                  addNews({ title: news.webTitle, link: news.webUrl })
+                }
+              ></img>
+              <p className="time">
+                {getEvenDaysDiff(news.webPublicationDate)} ago.
+              </p>
+            </div>
+          </div>
         </li>
       );
     });
