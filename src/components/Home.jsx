@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import Image from "../assets/bookMark.png";
+const API_KEY = process.env.REACT_APP_BASE_URL;
+console.log(API_KEY);
 
 function ConvertMinutes(num) {
   let d = Math.floor(num / 1440);
@@ -34,9 +36,8 @@ export const Home = () => {
   const history = useHistory();
 
   const loadingFeed = (page = 1) => {
-    fetch(
-      `https://content.guardianapis.com/search?page=${page}&show-fields=all&api-key=9215094c-0a04-4ea0-ac62-b8b0bc96ca02`
-    )
+    const url = `https://content.guardianapis.com/search?page=${page}&show-fields=all&api-key=${API_KEY}`;
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setNewsFeed(data);
