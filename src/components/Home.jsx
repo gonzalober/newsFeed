@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import Image from "../assets/bookMark.png";
 const API_KEY = process.env.REACT_APP_BASE_URL;
-console.log(API_KEY);
 
 function ConvertMinutes(num) {
   let d = Math.floor(num / 1440);
@@ -26,6 +25,13 @@ const getEvenDaysDiff = (d) => {
 
   let result = ConvertMinutes(Math.round(now - then) / oneDay);
   return result;
+};
+
+const checkInclude = (arr, obj) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].title === obj.title) return true;
+  }
+  return false;
 };
 
 export const Home = () => {
@@ -74,6 +80,7 @@ export const Home = () => {
               </a>
               <img
                 className="bookmarkImg"
+                type="checkbox"
                 src={Image}
                 alt=""
                 onClick={() =>
@@ -89,8 +96,11 @@ export const Home = () => {
       );
     });
   };
+
   const addNews = (newsProperties) => {
-    newsArray.push(newsProperties);
+    if (!checkInclude(newsArray, newsProperties)) {
+      newsArray.push(newsProperties);
+    }
   };
 
   useEffect(() => {
@@ -105,7 +115,6 @@ export const Home = () => {
   const routeChange = (event) => {
     event.preventDefault();
     let path = `bookmarks`;
-
     history.push({
       pathname: path,
       array: newsArray,

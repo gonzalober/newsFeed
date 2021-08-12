@@ -99,6 +99,11 @@ li p {
 .bookmarkImg:hover {
   filter: grayscale(100%);
 }
+.bookmarkImg[type="checkbox"]:checked {
+  background: grayscale(100%);
+
+  filter: grayscale(100%);
+}
 
 .time {
   display: flex;
