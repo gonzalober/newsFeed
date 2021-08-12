@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 export const App = () => {
   return (
-    <div>
+    <div id="app">
       <Router>
         <Route exact path="/">
           <Home />
