@@ -38,7 +38,10 @@ export const Home = () => {
   const [newsFeed, setNewsFeed] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
-  const [newsArray, setNewsArray] = useState([]);
+  const [newsArray, setNewsArray] = useState([], () => {
+    const localSavedBookmarks = localStorage.getItem("key");
+    return localSavedBookmarks ? JSON.parse(localSavedBookmarks) : [];
+  });
   const history = useHistory();
 
   const loadingFeed = (page = 1) => {
@@ -101,6 +104,7 @@ export const Home = () => {
     if (!checkInclude(newsArray, newsProperties)) {
       newsArray.push(newsProperties);
     }
+    localStorage.setItem("key", JSON.stringify(newsArray));
   };
 
   useEffect(() => {
