@@ -45,7 +45,7 @@ export const Home = () => {
   const history = useHistory();
 
   const loadingFeed = (page = 1) => {
-    const url = `https://content.guardianapis.com/search?page=${page}&show-fields=all&api-key=${API_KEY}`;
+    const url = `http://content.guardianapis.com/search?page=${page}&show-fields=all&api-key=${API_KEY}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {

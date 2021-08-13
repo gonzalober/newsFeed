@@ -1,5 +1,7 @@
 # News Feed - React based site
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/00bb16da-e5ed-46c4-89c1-2c1b7fa25260/deploy-status)](https://app.netlify.com/sites/latestnewsfeedapi/deploys)
+
 ## Available Scripts
 
 In the project directory, you can run:
