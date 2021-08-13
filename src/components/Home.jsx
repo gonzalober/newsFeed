@@ -38,7 +38,7 @@ export const Home = () => {
   const [newsFeed, setNewsFeed] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
-  const [newsArray, setNewsArray] = useState([], () => {
+  const [newsArray, setNewsArray] = useState(() => {
     const localSavedBookmarks = localStorage.getItem("key");
     return localSavedBookmarks ? JSON.parse(localSavedBookmarks) : [];
   });
@@ -105,6 +105,7 @@ export const Home = () => {
       newsArray.push(newsProperties);
     }
     localStorage.setItem("key", JSON.stringify(newsArray));
+    //localStorage.setItem("bookmarks", JSON.stringify(newsArray));
   };
 
   useEffect(() => {
@@ -119,10 +120,7 @@ export const Home = () => {
   const routeChange = (event) => {
     event.preventDefault();
     let path = `bookmarks`;
-    history.push({
-      pathname: path,
-      array: newsArray,
-    });
+    history.push(path);
     console.log(newsArray);
   };
 

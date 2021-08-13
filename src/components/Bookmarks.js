@@ -1,25 +1,18 @@
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const Bookmarks = () => {
   const history = useHistory();
-  const location = useLocation([]);
   const result = () => {
     return localStorage.getItem("key")
       ? JSON.parse(localStorage.getItem("key"))
       : [];
   };
 
-  console.log(typeof result);
   const routeChange = (event) => {
     event.preventDefault();
     let path = `/`;
     history.push(path);
   };
-
-  const checkArray = () => {
-    console.log(location.array);
-  };
-  checkArray();
 
   return (
     <div className="bookmarks">
