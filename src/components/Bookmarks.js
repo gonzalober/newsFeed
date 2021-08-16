@@ -13,7 +13,7 @@ export const Bookmarks = () => {
     let path = `/`;
     history.push(path);
   };
-
+  console.log(result());
   return (
     <div className="bookmarks">
       <h1>My Bookmarks</h1>

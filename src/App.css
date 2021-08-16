@@ -1,5 +1,4 @@
 body {
-  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -31,9 +30,17 @@ button {
   list-style-type: none;
 }
 
+h1 {
+  text-align: center;
+  color: #596980;
+}
+
 li p {
   margin: 0;
-  padding: 0;
+}
+
+.app {
+  align-items: center;
 }
 
 .cardContent {
@@ -44,7 +51,7 @@ li p {
   display: inline-block;
   text-decoration: none;
   color: #4d5b6e;
-  font-size: 4vh;
+  font-size: min(3vw, 32px);
   padding: 10px;
 }
 
@@ -114,6 +121,7 @@ li p {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(49, 49, 49, 0.2);
+  align-self: center;
   transition: 0.3s;
   width: 40%;
   max-height: 40%;

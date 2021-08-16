@@ -63,6 +63,7 @@ export const Home = () => {
 
   const displayNews = (newsFeed) => {
     return newsFeed.response.results.map((news) => {
+      //console.log(news);
       return (
         <li key={news.id}>
           <div className="card">
@@ -87,7 +88,11 @@ export const Home = () => {
                 src={Image}
                 alt=""
                 onClick={() =>
-                  addNews({ title: news.webTitle, link: news.webUrl })
+                  addNews({
+                    title: news.webTitle,
+                    link: news.webUrl,
+                    date: news.fields.lastModified,
+                  })
                 }
               ></img>
               <p className="time">
@@ -104,8 +109,16 @@ export const Home = () => {
     if (!checkInclude(newsArray, newsProperties)) {
       newsArray.push(newsProperties);
     }
+    for (let i = 0; i < newsArray.length; i++) {
+      console.log(newsArray[i]);
+      newsArray[i].date = new Date(newsArray[i].date);
+    }
+    console.log(newsArray);
+    newsArray.sort((a, b) => {
+      return b.date - a.date;
+    });
+    console.log(newsArray);
     localStorage.setItem("key", JSON.stringify(newsArray));
-    //localStorage.setItem("bookmarks", JSON.stringify(newsArray));
   };
 
   useEffect(() => {
@@ -125,11 +138,12 @@ export const Home = () => {
   };
 
   return (
-    <div className="App">
-      <button onClick={routeChange}>Bookmarks</button>
+    <div className="app">
+      <h1>Latest world News!</h1>
+      <button onClick={routeChange}>Go to your Favorites News</button>
       {error && <div>{error}</div>}
       {isLoading ? (
-        <div>Loading...</div>
+        <h1>Loading...</h1>
       ) : (
         <ul>
           {newsFeed.length !== 0 && !error ? displayNews(newsFeed) : null}
