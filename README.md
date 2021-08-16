@@ -1,6 +1,6 @@
 # News Feed - React based site
 
-### [Read or save the latest news!](https://latestnewsfeedapi.netlify.app/)
+### [Read or save the latests news!](https://latestnewsfeedapi.netlify.app/)
 
 [![Build Status](https://travis-ci.com/gonzalober/newsFeed.svg?branch=master)](https://travis-ci.com/gonzalober/newsFeed) [![Netlify Status](https://api.netlify.com/api/v1/badges/00bb16da-e5ed-46c4-89c1-2c1b7fa25260/deploy-status)](https://app.netlify.com/sites/latestnewsfeedapi/deploys)
 
