@@ -12,6 +12,6 @@ script:
 
 deploy:
   provider: netlify
-  skip-cleanup: true
+  skip_cleanup: true
   on:
     branch: master
