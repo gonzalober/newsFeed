@@ -9,12 +9,18 @@ function ConvertMinutes(num) {
   let h = Math.floor((num - d * 1440) / 60);
   let m = Math.round(num % 60);
 
-  if (d > 0) {
-    return d + " days, " + h + " hours, " + m + " minutes";
+  if (isNaN(d)) {
+    console.log("hola");
+    return "posting date hasn't been taken";
   } else {
-    return h + " hours, " + m + " minutes";
+    if (d > 0) {
+      return d + " days, " + h + " hours, " + m + " minutes";
+    } else {
+      return h + " hours, " + m + " minutes";
+    }
   }
 }
+
 const getEvenDaysDiff = (d) => {
   let now = new Date();
   const oneDay = 24 * 60 * 60 * 10;
