@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 
-export const Bookmarks = () => {
+const Bookmarks = () => {
   const history = useHistory();
   const result = () => {
     return localStorage.getItem("key")
@@ -37,3 +37,5 @@ export const Bookmarks = () => {
     </div>
   );
 };
+
+export default Bookmarks;

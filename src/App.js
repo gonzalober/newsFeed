@@ -1,9 +1,9 @@
 import "./App.css";
-import { Home } from "./components/Home";
-import { Bookmarks } from "./components/Bookmarks";
+import Home from "./components/Home";
+import Bookmarks from "./components/Bookmarks";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-export const App = () => {
+const App = () => {
   return (
     <div id="app">
       <Router>
@@ -17,3 +17,4 @@ export const App = () => {
     </div>
   );
 };
+export default App;

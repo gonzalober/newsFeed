@@ -34,7 +34,7 @@ const checkInclude = (arr, obj) => {
   return false;
 };
 
-export const Home = () => {
+const Home = () => {
   const [newsFeed, setNewsFeed] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -165,3 +165,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;
