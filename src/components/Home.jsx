@@ -117,7 +117,7 @@ const Home = () => {
     for (let i = 0; i < newsArray.length; i++) {
       newsArray[i].date = new Date(newsArray[i].date);
     }
-    console.log(newsArray);
+
     newsArray.sort((a, b) => {
       return b.date - a.date;
     });
@@ -138,7 +138,6 @@ const Home = () => {
     event.preventDefault();
     let path = `bookmarks`;
     history.push(path);
-    console.log(newsArray);
   };
 
   return (

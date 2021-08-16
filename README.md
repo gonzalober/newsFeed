@@ -4,6 +4,11 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/00bb16da-e5ed-46c4-89c1-2c1b7fa25260/deploy-status)](https://app.netlify.com/sites/latestnewsfeedapi/deploys)
 
+![Logo](public/miniGif.gif)
+
+Stay up to date with the latest news. Built on ReactJS which presents news and articles from The Guardian API.
+The purpose of the app is gain familiarity with the use of pagination, hooks , CI and deployment.
+
 ## Available Scripts
 
 In the project directory, you can run:
