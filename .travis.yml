@@ -10,4 +10,5 @@ script:
   - yarn run build
 
 deploy:
+  provider: netlify
   on: master
