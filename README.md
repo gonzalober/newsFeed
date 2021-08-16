@@ -1,8 +1,8 @@
 # News Feed - React based site
 
-[![Build Status](https://travis-ci.com/gonzalober/newsFeed.svg?branch=master)](https://travis-ci.com/gonzalober/newsFeed)
+[Read or save the latest news!](https://latestnewsfeedapi.netlify.app/)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/00bb16da-e5ed-46c4-89c1-2c1b7fa25260/deploy-status)](https://app.netlify.com/sites/latestnewsfeedapi/deploys)
+[![Build Status](https://travis-ci.com/gonzalober/newsFeed.svg?branch=master)](https://travis-ci.com/gonzalober/newsFeed)[![Netlify Status](https://api.netlify.com/api/v1/badges/00bb16da-e5ed-46c4-89c1-2c1b7fa25260/deploy-status)](https://app.netlify.com/sites/latestnewsfeedapi/deploys)
 
 ![Logo](public/miniGif.gif)
 
