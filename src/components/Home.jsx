@@ -45,7 +45,7 @@ const Home = () => {
   const history = useHistory();
 
   const loadingFeed = (page = 1) => {
-    const url = `http://content.guardianapis.com/search?page=${page}&show-fields=all&api-key=${API_KEY}`;
+    const url = `https://content.guardianapis.com/search?page=${page}&show-fields=all&api-key=${API_KEY}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -63,7 +63,6 @@ const Home = () => {
 
   const displayNews = (newsFeed) => {
     return newsFeed.response.results.map((news) => {
-      //console.log(news);
       return (
         <li key={news.id}>
           <div className="card">
@@ -110,14 +109,13 @@ const Home = () => {
       newsArray.push(newsProperties);
     }
     for (let i = 0; i < newsArray.length; i++) {
-      console.log(newsArray[i]);
       newsArray[i].date = new Date(newsArray[i].date);
     }
     console.log(newsArray);
     newsArray.sort((a, b) => {
       return b.date - a.date;
     });
-    console.log(newsArray);
+
     localStorage.setItem("key", JSON.stringify(newsArray));
   };
 
