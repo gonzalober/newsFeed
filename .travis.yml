@@ -8,10 +8,14 @@ install:
 
 script:
   - yarn test
-  - yarn run build
+
+before_deploy:
+  - npm install netlify-cli -g
+  - yarn build
 
 deploy:
-  provider: netlify
-  skip_cleanup: true
+  provider: script
+  edge: true
+  script: netlify deploy --dir=dist --prod
   on:
     branch: master
